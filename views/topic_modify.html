@@ -1,0 +1,49 @@
+{{template "header"}}
+<title>修改文章</title>
+</head>
+<body>
+{{template "navbar" .}}
+<ul class="nav navbar-nav navbar-right">
+    {{if .IsLogin}}
+    <li class="nav-item"><a class="nav-link" href="/login?exit=true">退出</a> </li>
+    {{else}}
+    <li class="nav-item"><a class="nav-link" href="/login">管理员登录</a> </li>
+    {{end}}
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" >
+    <h1>修改文章</h1>
+    <form action="/topic" method="post">
+        <div class="form-group">
+            <input type="hidden" name="id" value="{{.Topic.Id}}">
+            <label class="form-label" for="title">文章标题:  </label>
+            <input type="text" name="title" class="form-control" placeholder="请输入文章标题" id="title" value="{{.Topic.Title}}" style="width: 300px">
+        </div>
+        <br>
+        <div class="form-group">
+            <select class="form-select" aria-label="Default select example" name="category" style="width: 300px">
+                <option selected value="{{.Topic.Category}}">请选择文章分类</option>
+            {{range .Categories}}
+                <option value="{{.Title}}" >{{.Title}}</option>
+                {{end}}
+            </select>
+        </div>
+        <br>
+        <div class="mb-auto">
+            <label class="form-label" for="title">文章标签:  </label>
+            <input type="text" name="label" value="{{.Topic.Label}}" class="form-control" placeholder="Example1 Example2" id="label" style="width: 600px">
+        </div>
+        <br>
+        <div class="mb-auto">
+            <label for="content" class="form-label">文章内容:  </label>
+            <br>
+            <textarea name="content" rows="10" cols="50" class="form-control" id="content" style="width: 600px">{{.Topic.Content}}</textarea>
+        </div>
+        <h1></h1>
+        <button type="submit" class="btn btn-primary">修改文章</button>
+    </form>
+</div>
+</body>
+</html>

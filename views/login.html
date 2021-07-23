@@ -1,0 +1,51 @@
+{{template "header"}}
+    <link rel="shortcut icon" href="./../static/img/favicon.png">
+    <title>管理员登录</title>
+</head>
+<body>
+    {{template "navbar" .}}
+    </div>
+    </div>
+    </nav>
+    <div class="container" style="width: 300px">
+        <br><br>
+        <img src="./../static/img/code.png" class="rounded mx-auto d-block"  width="150" height="150">
+        <h1><br></h1>
+        <form method="post" action="/login">
+            <div class="mb-auto">
+                <label for="username" class="form-label">账号</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+            </div>
+            <div class="mb-auto">
+                <label for="password" class="form-label">密码</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+            </div>
+            <div class="mb-auto form-check">
+                <input type="checkbox" class="form-check-input" id="AutoLogin" name="AutoLogin">
+                <label class="form-check-label" for="AutoLogin">自动登录</label>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick=" return checkInput();">登录</button>
+            <button class="btn btn-secondary" onclick="return backHome();">返回</button>
+        </form>
+        <script type="text/javascript">
+            function checkInput(){
+                let username = document.getElementById("username");
+                if (username.value.length===0){
+                    alert("未输入账号");
+                    return false;
+                }
+                let password = document.getElementById("password");
+                if (password.value.length===0){
+                    alert("未输入密码");
+                    return false;
+                }
+                return true
+            }
+            function backHome(){
+                window.location.href="/";
+                return false;
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{{template "header"}}
+<link rel="shortcut icon" href="./../static/img/favicon.png">
+<title>用户注册</title>
+</head>
+<body>
+{{template "navbar" .}}
+<ul class="nav navbar-nav navbar-right">
+    {{if .IsLogin}}
+    <li class="nav-item"><a class="nav-link" href="/login?exit=true">退出</a> </li>
+    {{else}}
+    <li class="nav-item"><a class="nav-link" href="/login">管理员登录</a> </li>
+    {{end}}
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" style="width: 300px">
+    <img src="./../static/img/user.png" class="rounded mx-auto d-block"  width="150" height="150">
+    <br><br>
+    {{if .FalseCond}}
+    <div class="alert alert-danger" role="alert">
+        用户名已存在
+    </div>
+    {{end}}
+    <br>
+    <h1><br></h1>
+    <form method="post" action="/user">
+        <div class="mb-auto">
+            <input type="hidden" name="op" value="add">
+            <label for="nickname" class="form-label">昵称</label>
+            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="请输入用户名">
+        </div>
+        <div class="mb-auto">
+            <label for="password" class="form-label">密码</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" onclick=" return checkInput();">注册</button>
+    </form>
+    <script type="text/javascript">
+        function checkInput(){
+            let username = document.getElementById("username");
+            if (username.value.length===0){
+                alert("未输入昵称");
+                return false;
+            }
+            let password = document.getElementById("password");
+            if (password.value.length===0){
+                alert("未输入密码");
+                return false;
+            }
+            return true
+        }
+    </script>
+</div>
+</body>
+</html>

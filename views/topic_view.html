@@ -1,0 +1,54 @@
+{{template "header"}}
+<title>{{.Topic.Title}}</title>
+</head>
+<body>
+{{template "navbar" .}}
+<ul class="nav navbar-nav navbar-right">
+    {{if .IsLogin}}
+    <li class="nav-item"><a class="nav-link" href="/login">管理员登录</a> </li>
+    {{else}}
+    <li class="nav-item"><a class="nav-link" href="/login?exit=true">退出</a> </li>
+    {{end}}
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+    {{with .Topic}}
+    <h1>{{.Title}}</h1>
+    <img src="/static/background/{{.Title}}.jpg" class="rounded mx-auto d-block"  width="600" height="300">
+    <br>
+    <pre class="h4">{{.Content}}</pre>
+    {{end}}
+</div>
+<br><br><br>
+{{$IsLogin :=.IsLogin}}
+<div class="container" >
+    <hr>
+    <h2>评论区</h2>
+    <form method="post" action="/reply/add">
+        <div class="mb-auto ">
+            <input type="hidden" name="tid" value="{{.Topic.Id}}">
+            <input type="hidden" name="category" value="{{.Topic.Category}}">
+        </div>
+        <br>
+        <div class="mb-auto">
+            <label for="content" class="form-label">内容:</label>
+            <br>
+            <textarea name="content" rows="10" class="form-control" id="content" style="height: 180px;width: 400px" placeholder=""不超过200字></textarea>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">发表</button>
+    </form>
+    {{range .Replies}}
+    <h4><img src="/static/head/{{.Name}}.jpg" class="rounded mx-auto"  width="40" height="40">  {{.Name}} </h4>
+    <small class="text-muted">{{.Created}} </small>
+    {{if $IsLogin}}
+    <a class="btn btn-sm btn-outline-danger" href="/reply/delete/{{.Tid}}/{{.Id}}">删除</a>
+    {{end}}
+    <pre>{{.Content}}</pre>
+    {{end}}
+
+</div>
+</body>
+</html>

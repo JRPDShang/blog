@@ -1,0 +1,23 @@
+{{template "header"}}
+<title>JRPDShang的博客</title>
+</head>
+<body>
+{{template "navbar" .}}
+<ul class="nav navbar-nav navbar-right">
+    {{if .IsLogin}}
+    <li class="nav-item"><a class="nav-link" href="/login?exit=true">退出</a> </li>
+    {{else}}
+    <li class="nav-item"><a class="nav-link" href="/login">管理员登录</a> </li>
+    {{end}}
+</ul>
+</div>
+</div>
+</nav>
+<div class="mb-auto" >
+    <h1 style="text-align:center">404</h1>
+    <p style="text-align:center">
+        <img src="./../static/img/404.png">
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{{template "header"}}
+<title>分类</title>
+</head>
+<body>
+{{template "navbar" .}}
+<ul class="nav navbar-nav navbar-right">
+    {{if .IsLogin}}
+    <li class="nav-item"><a class="nav-link" href="/login">管理员登录</a> </li>
+    {{else}}
+    <li class="nav-item"><a class="nav-link" href="/login?exit=true">退出</a> </li>
+    {{end}}
+</ul>
+</div>
+</div>
+</nav>
+<div class="container-fluid" >
+    <h1>用户列表</h1>
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>活跃度</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .Users}}
+        <tr>
+            <th>{{.Id}}</th>
+            <th>{{.NickName}}</th>
+            <th>{{.Password}}</th>
+            <th>{{.Replies}}</th>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

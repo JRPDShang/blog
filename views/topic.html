@@ -1,0 +1,48 @@
+{{template "header"}}
+<title>文章</title>
+</head>
+<body>
+{{template "navbar" .}}
+<ul class="nav navbar-nav navbar-right">
+    {{if .IsLogin}}
+    <li class="nav-item"><a class="nav-link" href="/login?exit=true">退出</a> </li>
+    {{else}}
+    <li class="nav-item"><a class="nav-link" href="/login">管理员登录</a> </li>
+    {{end}}
+</ul>
+</div>
+</div>
+</nav>
+<div class="container-fluid" >
+    <h1>文章</h1>
+    <a href="/topic/add" class="btn btn-info">添加文章</a>
+    <h1></h1>
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>名称</th>
+            <th>最后更新</th>
+            <th>浏览数</th>
+            <th>回复数</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .Topics}}
+        <tr>
+        <th>{{.Id}}</th>
+        <th>{{.Title}}</th>
+        <th>{{.Updated}}</th>
+        <th>{{.Views}}</th>
+            <th>{{.ReplyCount}}</th>
+            <th><a href="/topic/modify/{{.Id}}" class="btn btn-outline-success btn-sm">修改</a>
+                <a href="/topic/delete/{{.Id}}" class="btn btn-outline-danger btn-sm">删除</a></th>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
